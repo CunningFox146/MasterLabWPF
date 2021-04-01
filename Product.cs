@@ -7,32 +7,44 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MasterLabWPF
 {
-    class Product
+    [Serializable]
+    public class Product
     {
+        public string ShortName { get; set; }
+        public string FullName { get; set; }
+        public string Category { get; set; }
+        public double Rating { get; set; }
+        public int Price { get; set; }
+        public string Imagesrc { get; set; }
+        public int Discount { get; set; }
+        public int Amount { get; set; }
+
+        public int DiscountedPrice
+        {
+            get => Price-(int)(Price * (float)Discount / 100);
+        }
+        //public Image image { get; set; }
+
         public Product()
         {
 
         }
 
-        public Product(string shortName, string fullName, string description, string category, int rating, int price, string imagesrc)
+        public Product(string shortName, string fullName, string category, double rating, int price, string imagesrc, int discount, int count)
         {
-            this.shortName = shortName;
-            this.fullName = fullName;
-            this.description = description;
-            this.category = category;
-            this.rating = rating;
-            this.price = price;
-            this.imagesrc = imagesrc;
+            this.ShortName = shortName;
+            this.FullName = fullName;
+            this.Category = category;
+            this.Rating = rating;
+            this.Price = price;
+            this.Imagesrc = imagesrc;
+            this.Discount = discount;
+            this.Amount = count;
+
         }
-        
-        public string shortName { get; set; }
-        public string fullName { get; set; }
-        public string description { get; set; }
-        public string category { get; set; }
-        public int rating { get; set; }
-        public int price { get; set; }
-        public string imagesrc { get; set; }
-        //public Image image { get; set; }
+
+
+      
 
 
     }

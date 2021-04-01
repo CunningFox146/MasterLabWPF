@@ -8,12 +8,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl>
-            <TabItem Header="Каталог" Width="100px">
+        <TabControl FontSize="16">
+            <TabItem Header="Каталог" Width="auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="731*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="100*"/>
                         <ColumnDefinition Width="10"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -24,30 +28,34 @@
                         <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" AutoGenerateColumns="False">
+                    <DataGrid FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False">
                         
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Краткое название" Binding="{Binding Path=shortName}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Полное название" Binding="{Binding Path=fullName}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false"  Header="Краткое название" Binding="{Binding Path=ShortName}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false"  Header="Полное название" Binding="{Binding Path=FullName}"></DataGridTextColumn>
                             <DataGridTemplateColumn Header="Изображение">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Image}"/>
+                                        <Image Source="{Binding Imagesrc}" Width="100" Height="100"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Категория" Binding="{Binding Path=category}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Рейтинг" Binding="{Binding Path=rating}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Описание" Binding="{Binding Path=description}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false" Header="Категория" Binding="{Binding Path=Category}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false" Header="Рейтинг" Binding="{Binding Path=Rating}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false" Header="Цена" Binding="{Binding Path=Price}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false" Header="Скидка" Binding="{Binding Path=Discount}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цена со скидкой" Binding="{Binding Path=DiscountedPrice}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="false" Header="Количество" Binding="{Binding Path=Amount}"></DataGridTextColumn>
                         </DataGrid.Columns>
-                        
-                        
-                        
+                     
                     </DataGrid>
+
+                    <Button x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Click="SaveListButton_Click">Сохранить</Button>
+                    <Button x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click">Очистить список</Button>
+                    <Button x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click">Загрузить</Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Добавление продукта" Width="150px">
+            <TabItem Header="Добавление продукта" Width="auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -64,7 +72,10 @@
                         <RowDefinition Height="30*"/>
                         <RowDefinition Height="30*"/>
                         <RowDefinition Height="30*"/>
-                        <RowDefinition Height="150*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="5"/>
 
@@ -83,19 +94,29 @@
                     </ComboBox>
 
                     <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="4">Рейтинг</Label>
-                    <xctk:IntegerUpDown Name="RatingUDC" Grid.Column="2" Grid.Row="4" Minimum="1" Maximum="5" Margin ="4"/>
+                    <xctk:DoubleUpDown Name="RatingUDC" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="5" Margin ="4"/>
 
                     <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="5">Цена</Label>
                     <xctk:IntegerUpDown Name="PriceUDC" Grid.Column="2" Grid.Row="5" Minimum="0"  Margin ="4"/>
 
-                    <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="6">Описание</Label>
-                    <RichTextBox x:Name="DescriptionTB" FontSize="16" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="6"  Margin ="4"/>
+                    <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="6">Количество</Label>
+                    <xctk:IntegerUpDown Name="AmountUDC" Grid.Column="2" Grid.Row="6" Minimum="0"  Margin ="4"/>
 
-                    <Button x:Name="AddButton" Grid.Column="1" Grid.Row="7" MaxWidth="100" Click="AddButton_Click">Добавить</Button>
+                    <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="7">Cкидка</Label>
+                    <xctk:IntegerUpDown Name="DiscountUDC" Grid.Column="2" Grid.Row="7" Minimum="0" Maximum="100"  Margin ="4"/>
+
+                    <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="8">Изображение</Label>
+                    <Button FontSize="16" x:Name="LoadImageButton" Grid.Column="2" Grid.Row="8" Margin="3" Grid.ColumnSpan="2" MaxWidth="200" Click="LoadImageButton_Click" HorizontalAlignment="Left" Width="328">Добавить изображение</Button>
+                    <TextBlock  x:Name="SelectedImageTextBlock" Grid.ColumnSpan="2" FontSize="16" Grid.Column="4" Grid.Row="8"></TextBlock>
+
+
+
+
+                    <Button FontSize="16" x:Name="AddButton" Grid.Column="1" Grid.Row="10" MaxWidth="100" Click="AddButton_Click">Добавить</Button>
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Настройки" Width="100px">
+            <TabItem Header="Настройки" Width="auto">
             </TabItem>
         </TabControl>
 
