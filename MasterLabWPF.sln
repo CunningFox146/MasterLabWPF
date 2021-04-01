@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterLabWPF", "MasterLabWPF.csproj", "{B88DC672-844A-4BD4-9515-9ED30EA6A211}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B88DC672-844A-4BD4-9515-9ED30EA6A211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B88DC672-844A-4BD4-9515-9ED30EA6A211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B88DC672-844A-4BD4-9515-9ED30EA6A211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B88DC672-844A-4BD4-9515-9ED30EA6A211}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF9717CF-5F20-419D-95F2-5D4CD41828D0}
+	EndGlobalSection
+EndGlobal
