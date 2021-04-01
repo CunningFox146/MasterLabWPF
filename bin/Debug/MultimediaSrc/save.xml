@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <ShortName>Молоко "Савушкин продукт"</ShortName>
+    <FullName>Молоко "Савушкин продукт" 1.5% 1л</FullName>
+    <Category>Молочная продукция</Category>
+    <Rating>4.23</Rating>
+    <Price>100</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\milk.jpg</Imagesrc>
+    <Discount>0</Discount>
+    <Amount>100</Amount>
+  </Product>
+  <Product>
+    <ShortName>Сыр "Новый"</ShortName>
+    <FullName>Сыр "Новый" 1кг, Россия</FullName>
+    <Category>Молочная продукция</Category>
+    <Rating>3.89</Rating>
+    <Price>230</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\cheese.jpg</Imagesrc>
+    <Discount>5</Discount>
+    <Amount>110</Amount>
+  </Product>
+  <Product>
+    <ShortName>Огурец</ShortName>
+    <FullName>Огурец 1кг, Польша</FullName>
+    <Category>Овощи</Category>
+    <Rating>4.24</Rating>
+    <Price>19</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\cucumber.jpg</Imagesrc>
+    <Discount>0</Discount>
+    <Amount>50</Amount>
+  </Product>
+  <Product>
+    <ShortName>Помидор</ShortName>
+    <FullName>Помидор 1кг, Беларусь</FullName>
+    <Category>Овощи</Category>
+    <Rating>4.99</Rating>
+    <Price>21</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\tomato.jpg</Imagesrc>
+    <Discount>0</Discount>
+    <Amount>39</Amount>
+  </Product>
+  <Product>
+    <ShortName>Банан</ShortName>
+    <FullName>Банан 1кг, Эквадор</FullName>
+    <Category>Фрукты</Category>
+    <Rating>3.25</Rating>
+    <Price>30</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\banana.jpg</Imagesrc>
+    <Discount>10</Discount>
+    <Amount>54</Amount>
+  </Product>
+  <Product>
+    <ShortName>Яблоко</ShortName>
+    <FullName>Яблоко 1кг, Польша</FullName>
+    <Category>Фрукты</Category>
+    <Rating>4.2</Rating>
+    <Price>23</Price>
+    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\apple.jpg</Imagesrc>
+    <Discount>0</Discount>
+    <Amount>36</Amount>
+  </Product>
+</ArrayOfProduct>
