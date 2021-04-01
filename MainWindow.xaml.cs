@@ -130,7 +130,7 @@ namespace MasterLabWPF
             var serializer = new XmlSerializer(type);
             using (var stream = new StreamWriter(filename))
             {
-                serializer.Serialize(stream, obj);
+                serializer.Serialize(stream, obj); //
             }
 
         }
