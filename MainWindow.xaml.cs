@@ -34,6 +34,7 @@ namespace MasterLabWPF
             InitializeComponent();
 
             ProductGrid.ItemsSource = productList;
+            FilterDropDown.SelectedIndex = 0;
 
         }
 
@@ -152,5 +153,45 @@ namespace MasterLabWPF
             ProductGrid.ItemsSource = productList;
             ProductGrid.Items.Refresh();
         }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = sender as DataGridRow;
+            var index = row.GetIndex();
+            if (index >= 0 && productList.Count > 0)
+            {
+                var product = row.Item as Product;
+                var productDetailsWindow = new ProductDetailsWindow(in product);
+                productDetailsWindow.ShowDialog();
+                productList[index] = product;
+                ProductGrid.ItemsSource = productList;
+                
+            }
+            //var ProductDetailsWnd = new ProductDetailsWindow()
+        }
+
+        private void UpdateListButton_Click(object sender, RoutedEventArgs e)
+        {
+            var filter = FilterDropDown.Text;
+            if (filter == "Все")
+            {
+                ProductGrid.ItemsSource = productList;
+            }
+            else
+            {
+                var TempList = new List<Product>();
+                foreach(var product in productList)
+                {
+                    if (product.Category == filter)
+                        TempList.Add(product);
+                }
+                ProductGrid.ItemsSource = TempList;
+            }
+
+
+            ProductGrid.Items.Refresh();
+        }
+
+
     }
 }

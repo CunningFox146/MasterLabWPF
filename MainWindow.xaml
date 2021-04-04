@@ -29,10 +29,14 @@
                     </Grid.RowDefinitions>
 
                     <DataGrid FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False">
-                        
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>    
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="false"  Header="Краткое название" Binding="{Binding Path=ShortName}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="false"  Header="Полное название" Binding="{Binding Path=FullName}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true"  Header="Краткое название" Binding="{Binding Path=ShortName}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true"  Header="Полное название" Binding="{Binding Path=FullName}"></DataGridTextColumn>
                             <DataGridTemplateColumn Header="Изображение">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -40,18 +44,26 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn IsReadOnly="false" Header="Категория" Binding="{Binding Path=Category}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="false" Header="Рейтинг" Binding="{Binding Path=Rating}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="false" Header="Цена" Binding="{Binding Path=Price}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="false" Header="Скидка" Binding="{Binding Path=Discount}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true" Header="Категория" Binding="{Binding Path=Category}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true" Header="Рейтинг" Binding="{Binding Path=Rating}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true" Header="Цена" Binding="{Binding Path=Price}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true" Header="Скидка" Binding="{Binding Path=Discount}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Цена со скидкой" Binding="{Binding Path=DiscountedPrice}"></DataGridTextColumn>
-                            <DataGridTextColumn IsReadOnly="false" Header="Количество" Binding="{Binding Path=Amount}"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="true" Header="Количество" Binding="{Binding Path=Amount}"></DataGridTextColumn>
                         </DataGrid.Columns>
-                     
+                        
                     </DataGrid>
 
                     <Button x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Click="SaveListButton_Click">Сохранить</Button>
-                    <Button x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click">Очистить список</Button>
+                    <ComboBox x:Name="FilterDropDown" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="2">
+                        <ComboBoxItem>Все</ComboBoxItem>
+                        <ComboBoxItem>Овощи</ComboBoxItem>
+                        <ComboBoxItem>Фрукты</ComboBoxItem>
+                        <ComboBoxItem>Молочная продукция</ComboBoxItem>
+                     </ComboBox>
+
+                    <Button x:Name="UpdateListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="3" Click="UpdateListButton_Click">Обновить</Button>
+                    <Button x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click">Очистить</Button>
                     <Button x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click">Загрузить</Button>
                 </Grid>
             </TabItem>
