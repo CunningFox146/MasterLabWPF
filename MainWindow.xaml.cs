@@ -23,16 +23,17 @@ namespace MasterLabWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ICommand saveListCommand { get; set; }
         List<Product> productList;
         string selectedImg;
         public MainWindow()
         {
             productList = new List<Product>();
+            saveListCommand = new SaveListCommand();
 
-            
-            
+
             InitializeComponent();
-
+           
             ProductGrid.ItemsSource = productList;
             FilterDropDown.SelectedIndex = 0;
 
@@ -40,6 +41,7 @@ namespace MasterLabWPF
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+           
             var product = new Product(
                 ShortNameTB.Text,
                 FullNameTB.Text,
@@ -54,6 +56,7 @@ namespace MasterLabWPF
             productList.Add(product);
 
             ProductGrid.Items.Refresh();
+            System.Windows.Input.CommandManager.InvalidateRequerySuggested();
         }
 
         private void LoadImageButton_Click(object sender, RoutedEventArgs e)
@@ -94,32 +97,13 @@ namespace MasterLabWPF
                 {
 
                 }
+                System.Windows.Input.CommandManager.InvalidateRequerySuggested();
             }
             else return;
         }
 
         private void SaveListButton_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new SaveFileDialog();
-            dlg.Filter = "XML files (*.xml)|*.xml";
-            dlg.FileName = "save.xml";
-            dlg.InitialDirectory = System.IO.Directory.GetCurrentDirectory() + @"\Bin\MultemediaSrc\";
-
-            if (dlg.ShowDialog() == true)
-            {
-
-                try
-                {
-                    Serialize(dlg.FileName, typeof(List<Product>), productList);
-
-                }
-                catch (Exception excep)
-                {
-                    
-                }
-
-            }
-
                
 
             
@@ -152,6 +136,7 @@ namespace MasterLabWPF
             productList.Clear();
             ProductGrid.ItemsSource = productList;
             ProductGrid.Items.Refresh();
+            System.Windows.Input.CommandManager.InvalidateRequerySuggested();
         }
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -187,11 +172,32 @@ namespace MasterLabWPF
                 }
                 ProductGrid.ItemsSource = TempList;
             }
+            System.Windows.Input.CommandManager.InvalidateRequerySuggested();
 
 
             ProductGrid.Items.Refresh();
         }
+        private void ChangeLang_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Input.CommandManager.InvalidateRequerySuggested();
+            switch (LanguageLB.Text)
+            {
+                case "Русский":
+                    this.Resources = new ResourceDictionary()
+                    {
+                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\RussianLang.xaml")
+                    };
+                    break;
 
+                case "English":
+                    this.Resources = new ResourceDictionary()
+                    {
+                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\EnglishLang.xaml")
+                    };
+                    break;
+            }
+            
+        }
 
     }
 }

@@ -6,7 +6,7 @@
     <Category>Молочная продукция</Category>
     <Rating>4.23</Rating>
     <Price>100</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\milk.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\milk.jpg</Imagesrc>
     <Discount>0</Discount>
     <Amount>100</Amount>
   </Product>
@@ -16,7 +16,7 @@
     <Category>Молочная продукция</Category>
     <Rating>3.89</Rating>
     <Price>230</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\cheese.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\cheese.jpg</Imagesrc>
     <Discount>5</Discount>
     <Amount>110</Amount>
   </Product>
@@ -26,7 +26,7 @@
     <Category>Овощи</Category>
     <Rating>4.24</Rating>
     <Price>19</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\cucumber.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\cucumber.jpg</Imagesrc>
     <Discount>0</Discount>
     <Amount>50</Amount>
   </Product>
@@ -36,7 +36,7 @@
     <Category>Овощи</Category>
     <Rating>4.99</Rating>
     <Price>21</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\tomato.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\tomato.jpg</Imagesrc>
     <Discount>0</Discount>
     <Amount>39</Amount>
   </Product>
@@ -46,7 +46,7 @@
     <Category>Фрукты</Category>
     <Rating>3.25</Rating>
     <Price>30</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\banana.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\banana.jpg</Imagesrc>
     <Discount>10</Discount>
     <Amount>54</Amount>
   </Product>
@@ -56,7 +56,7 @@
     <Category>Фрукты</Category>
     <Rating>4.2</Rating>
     <Price>23</Price>
-    <Imagesrc>C:\Sem4\OOP\WPF\bin\Debug\MultimediaSrc\apple.jpg</Imagesrc>
+    <Imagesrc>C:\4sem\OOP\Labs\MasterLabWPF\bin\Debug\MultimediaSrc\apple.jpg</Imagesrc>
     <Discount>0</Discount>
     <Amount>36</Amount>
   </Product>

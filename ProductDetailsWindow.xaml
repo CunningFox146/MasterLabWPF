@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MasterLabWPF" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="ProductDetailsWindow" Height="450" Width="800">
+        Title="{DynamicResource _Edit_product}" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -30,38 +30,38 @@
             <RowDefinition Height="5"/>
 
         </Grid.RowDefinitions>
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="1">Короткое название</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="1" Content="{DynamicResource _ShortName}"></Label>
         <TextBox x:Name="ShortNameTB" FontSize="16" Grid.Column="2" Grid.Row="1" Margin ="4" Grid.ColumnSpan="2" />
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="2">Полное название</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="2" Content="{DynamicResource _FullName}"></Label>
         <TextBox x:Name="FullNameTB" FontSize="16" Grid.Column="2" Grid.Row="2"  Margin ="4" Grid.ColumnSpan="2"/>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="3">Категория</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="3" Content="{DynamicResource _Category}"></Label>
         <ComboBox x:Name="CategoryLB"  FontSize="16" Grid.Column="2" Grid.Row="3"  Margin ="4" Grid.ColumnSpan="2">
             <ComboBoxItem>Овощи</ComboBoxItem>
             <ComboBoxItem>Фрукты</ComboBoxItem>
             <ComboBoxItem>Молочная продукция</ComboBoxItem>
         </ComboBox>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="4">Рейтинг</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="4" Content="{DynamicResource _Rating}"></Label>
         <xctk:DoubleUpDown Name="RatingUDC" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="5" Margin ="4"/>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="5">Цена</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="5" Content="{DynamicResource _Price}"></Label>
         <xctk:IntegerUpDown Name="PriceUDC" Grid.Column="2" Grid.Row="5" Minimum="0"  Margin ="4"/>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="6">Количество</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="6" Content="{DynamicResource _Amount}"></Label>
         <xctk:IntegerUpDown Name="AmountUDC" Grid.Column="2" Grid.Row="6" Minimum="0"  Margin ="4"/>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="7">Cкидка</Label>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="7" Content="{DynamicResource _Discount}"></Label>
         <xctk:IntegerUpDown Name="DiscountUDC" Grid.Column="2" Grid.Row="7" Minimum="0" Maximum="100"  Margin ="4"/>
 
-        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="8">Изображение</Label>
-        <Button FontSize="16" x:Name="LoadImageButton" Grid.Column="2" Grid.Row="8" Margin="3" Grid.ColumnSpan="2" MaxWidth="200" Click="LoadImageButton_Click" HorizontalAlignment="Left" Width="328">Изменить изображение</Button>
+        <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="8" Content="{DynamicResource _Image}"></Label>
+        <Button FontSize="16" x:Name="LoadImageButton" Grid.Column="2" Grid.Row="8" Margin="3" Grid.ColumnSpan="2" MaxWidth="200" Click="LoadImageButton_Click" HorizontalAlignment="Left" Width="328" Content="{DynamicResource _AddImage}"></Button>
         <TextBlock  x:Name="SelectedImageTextBlock" Grid.ColumnSpan="2" FontSize="16" Grid.Column="4" Grid.Row="8"></TextBlock>
 
 
 
 
-        <Button FontSize="16" x:Name="EditButton" Grid.Column="1" Grid.Row="10" MaxWidth="100" Click="EditButton_Click">Изменить</Button>
+        <Button FontSize="16" x:Name="EditButton" Grid.Column="1" Grid.Row="10" MaxWidth="100" Click="EditButton_Click" Content="{DynamicResource _Change}"></Button>
     </Grid>
 </Window>

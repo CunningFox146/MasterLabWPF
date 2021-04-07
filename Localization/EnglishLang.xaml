@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:MasterLabWPF">
+    <v:String x:Key="_Settings">Settings</v:String>
+    <v:String x:Key="_Catalogue">Catalogue</v:String>
+    <v:String x:Key="_AddItem">Add product</v:String>
+    <v:String x:Key="_ShortName">Short name</v:String>
+    <v:String x:Key="_FullName">Full name</v:String>
+    <v:String x:Key="_Rating">Rating</v:String>
+    <v:String x:Key="_Image">Image</v:String>
+    <v:String x:Key="_Price">Price</v:String>
+    <v:String x:Key="_Discount">Discount</v:String>
+    <v:String x:Key="_DiscountedPrice">Discounted price</v:String>
+    <v:String x:Key="_Category">Category</v:String>
+    <v:String x:Key="_Amount">Amount</v:String>
+    <v:String x:Key="_Save">Save</v:String>
+    <v:String x:Key="_Load">Load</v:String>
+    <v:String x:Key="_Update">Update</v:String>
+    <v:String x:Key="_Clear">Clear</v:String>
+    <v:String x:Key="_Add">Add</v:String>
+    <v:String x:Key="_AddImage">Add image</v:String>
+    <v:String x:Key="_Language">Language</v:String>
+    <v:String x:Key="_Change">Edit</v:String>
+    <v:String x:Key="_Shop">Shop</v:String>
+    <v:String x:Key="_Edit_product">Edit product</v:String>
+
+</ResourceDictionary>
