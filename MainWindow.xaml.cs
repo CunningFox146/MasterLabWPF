@@ -79,6 +79,7 @@ namespace MasterLabWPF
 
         private void LoadListButton_Click(object sender, RoutedEventArgs e)
         {
+            var count0 = ProductGrid.Items.Count;
             var dlg = new OpenFileDialog();
             dlg.Filter = "XML files (*.xml)|*.xml";
             dlg.FileName = "save.xml";
@@ -100,6 +101,8 @@ namespace MasterLabWPF
                 System.Windows.Input.CommandManager.InvalidateRequerySuggested();
             }
             else return;
+
+            var count = ProductGrid.Items.Count;
         }
 
         private void SaveListButton_Click(object sender, RoutedEventArgs e)
@@ -183,19 +186,38 @@ namespace MasterLabWPF
             switch (LanguageLB.Text)
             {
                 case "Русский":
+                    try
+                    { 
                     this.Resources = new ResourceDictionary()
                     {
                         Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\RussianLang.xaml")
                     };
+                    } catch (Exception exc)
+                    {
+                    this.Resources = new ResourceDictionary()
+                    {
+                        Source = new Uri(@"c:\sem4\oop\masterlabwpf\localization\russianlang.xaml")
+                    };
+                    }
                     break;
-
                 case "English":
+                    try
+                    {
                     this.Resources = new ResourceDictionary()
                     {
                         Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\EnglishLang.xaml")
                     };
+                    } catch(Exception exc)
+                    {
+                        this.Resources = new ResourceDictionary()
+                        {
+                            Source = new Uri(@"c:\sem4\oop\masterlabwpf\localization\englishlang.xaml")
+                        };
+                    }
                     break;
+
             }
+
             
         }
 

@@ -6,7 +6,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="c:\4sem\oop\labs\masterlabwpf\localization\russianlang.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="localization\russianlang.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="resdictionary.xaml"> </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

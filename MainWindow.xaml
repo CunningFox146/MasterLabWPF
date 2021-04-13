@@ -34,7 +34,7 @@
                         <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False" VerticalGridLinesBrush ="White">
+                    <DataGrid IsReadOnly="False" FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False" VerticalGridLinesBrush ="White">
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow">
                                 <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
@@ -98,17 +98,17 @@
                     </DataGrid>
 
                     <!--Button Style="{StaticResource blueBg}" x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Click="SaveListButton_Click" Content="{DynamicResource _Save}"></-->
-                    <Button Style="{StaticResource blueBg}" x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Command="{Binding saveListCommand, Source={StaticResource viewModel}}" CommandParameter="{Binding ElementName=ProductGrid, Path=ItemsSource}" Content="{DynamicResource _Save}"/>
-                    <ComboBox x:Name="FilterDropDown" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="2">
+                    <Button Background="{StaticResource tealBlueGradient}" x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Command="{Binding saveListCommand, Source={StaticResource viewModel}}" CommandParameter="{Binding ElementName=ProductGrid, Path=ItemsSource}" Content="{DynamicResource _Save}"/>
+                    <ComboBox x:Name="FilterDropDown" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="2" Template="{DynamicResource ComboBoxControlTemplate1}">
                         <ComboBoxItem>Все</ComboBoxItem>
                         <ComboBoxItem>Овощи</ComboBoxItem>
                         <ComboBoxItem>Фрукты</ComboBoxItem>
                         <ComboBoxItem>Молочная продукция</ComboBoxItem>
                     </ComboBox>
 
-                    <Button Style="{StaticResource blueBg}" x:Name="UpdateListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="3" Click="UpdateListButton_Click" Content="{DynamicResource _Update}"></Button>
-                    <Button Style="{StaticResource blueBg}" x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click" Content="{DynamicResource _Clear}"></Button>
-                    <Button Style="{StaticResource blueBg}" x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click" Content="{DynamicResource _Load}"></Button>
+                    <Button Style="{StaticResource blueBg}" Background="{DynamicResource tealBlueGradient}" x:Name="UpdateListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="3" Click="UpdateListButton_Click" Content="{DynamicResource _Update}"></Button>
+                    <Button Style="{StaticResource dataTriggerStyle}" x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click" Content="{DynamicResource _Clear}"></Button>
+                    <Button Style="{StaticResource multiTriggerStyle}" x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click" Content="{DynamicResource _Load}"></Button>
                 </Grid>
             </TabItem>
             <TabItem Header="{DynamicResource _AddItem}" Width="auto">
@@ -194,7 +194,7 @@
                         <ComboBoxItem>Русский</ComboBoxItem>
                         <ComboBoxItem>English</ComboBoxItem>
                     </ComboBox>
-                    <Button Style="{StaticResource blueBg}" Margin ="3" x:Name="ChangeLang" FontSize="16" MaxWidth="140" Grid.Row="1" Grid.Column="3" Click="ChangeLang_Click"
+                    <Button Style="{StaticResource eventTriggerStyle}" Margin ="3" x:Name="ChangeLang" FontSize="16" MaxWidth="140" Grid.Row="1" Grid.Column="3" Click="ChangeLang_Click"
                      Content="{DynamicResource _Load}"></Button>
 
 

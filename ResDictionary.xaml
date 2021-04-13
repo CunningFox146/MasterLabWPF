@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MasterLabWPF">
+
+    <LinearGradientBrush  x:Key="tealBlueGradient">
+        <GradientStop Color="#64FCCB" Offset="0" />
+        <GradientStop Color="#0373C3" Offset="1" />
+    </LinearGradientBrush>
+
+    <Style x:Key="multiTriggerStyle" TargetType="Button">
+        <Setter Property="Background" Value="Cyan"/>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Control.IsMouseOver" Value="True"/>
+                    <Condition Property="Control.IsEnabled" Value="True"/>
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource tealBlueGradient}"/>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="roundCorner" TargetType="ComboBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                        </Style>
+                    </ControlTemplate.Resources>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="dataTriggerStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource tealBlueGradient}"/>
+        <Style.Triggers>
+            <DataTrigger Binding ="{Binding ElementName = ProductGrid, Path=Items.Count}"  Value="1">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="eventTriggerStyle" TargetType="Button">
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Click">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Duration="0:0:0.3"
+                                Storyboard.TargetProperty="FontSize"
+                                To="22" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+        </Style.Triggers>
+        
+    </Style>
+    <ControlTemplate x:Key="ComboBoxControlTemplate1" TargetType="{x:Type ComboBox}">
+        <ControlTemplate.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            </ControlTemplate.Resources>
+        <Grid/>
+    </ControlTemplate>
+</ResourceDictionary>
