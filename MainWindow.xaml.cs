@@ -23,6 +23,8 @@ namespace MasterLabWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        Stack<List<Product>> memento;
+        Stack<List<Product>> mementoRedo;
         public ICommand saveListCommand { get; set; }
         List<Product> productList;
         string selectedImg;
@@ -36,12 +38,19 @@ namespace MasterLabWPF
            
             ProductGrid.ItemsSource = productList;
             FilterDropDown.SelectedIndex = 0;
+            
 
+            memento = new Stack<List<Product>>();
+            mementoRedo = new Stack<List<Product>>();
         }
+
+
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            ProductGrid_SourceUpdated(null, null);
+
+
             var product = new Product(
                 ShortNameTB.Text,
                 FullNameTB.Text,
@@ -68,6 +77,7 @@ namespace MasterLabWPF
             {
                 selectedImg = dlg.FileName;
                 SelectedImageTextBlock.Text = System.IO.Path.GetFileName(dlg.FileName);
+                ImgPreview.Source = selectedImg;
             }
             else
             {
@@ -75,6 +85,7 @@ namespace MasterLabWPF
                 SelectedImageTextBlock.Text = "";
 
             }
+           
         }
 
         private void LoadListButton_Click(object sender, RoutedEventArgs e)
@@ -88,11 +99,14 @@ namespace MasterLabWPF
             {
                 try
                 {
+                    ProductGrid_SourceUpdated(null, null);
+
                     productList.Clear();
                     productList = (List<Product>)Deserialize(dlg.FileName, typeof(List<Product>));
 
                     ProductGrid.ItemsSource = productList;
                     ProductGrid.Items.Refresh();
+
                 }
                 catch (Exception excep)
                 {
@@ -136,9 +150,12 @@ namespace MasterLabWPF
 
         private void ClearListButton_Click(object sender, RoutedEventArgs e)
         {
+            ProductGrid_SourceUpdated(null, null);
+
             productList.Clear();
             ProductGrid.ItemsSource = productList;
             ProductGrid.Items.Refresh();
+
             System.Windows.Input.CommandManager.InvalidateRequerySuggested();
         }
 
@@ -160,6 +177,8 @@ namespace MasterLabWPF
 
         private void UpdateListButton_Click(object sender, RoutedEventArgs e)
         {
+            ProductGrid_SourceUpdated(null, null);
+
             var filter = FilterDropDown.Text;
             if (filter == "Все")
             {
@@ -179,6 +198,7 @@ namespace MasterLabWPF
 
 
             ProductGrid.Items.Refresh();
+
         }
         private void ChangeLang_Click(object sender, RoutedEventArgs e)
         {
@@ -186,34 +206,19 @@ namespace MasterLabWPF
             switch (LanguageLB.Text)
             {
                 case "Русский":
-                    try
-                    { 
                     this.Resources = new ResourceDictionary()
                     {
-                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\RussianLang.xaml")
+                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\RussianLang.xaml") // опять перестало работать
                     };
-                    } catch (Exception exc)
-                    {
-                    this.Resources = new ResourceDictionary()
-                    {
-                        Source = new Uri(@"c:\sem4\oop\masterlabwpf\localization\russianlang.xaml")
-                    };
-                    }
+                   
                     break;
                 case "English":
-                    try
-                    {
+
                     this.Resources = new ResourceDictionary()
                     {
-                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Localization\EnglishLang.xaml")
+                        Source = new Uri(@"Localization\EnglishLang.xaml")
                     };
-                    } catch(Exception exc)
-                    {
-                        this.Resources = new ResourceDictionary()
-                        {
-                            Source = new Uri(@"c:\sem4\oop\masterlabwpf\localization\englishlang.xaml")
-                        };
-                    }
+                    
                     break;
 
             }
@@ -221,5 +226,59 @@ namespace MasterLabWPF
             
         }
 
+        private void ChangeStyle_Click(object sender, RoutedEventArgs e)
+        {
+            switch(styleLB.Text)
+            {
+                case "Зелёный":
+                    this.Resources = new ResourceDictionary()
+                    {
+                       // Source = new Uri(@"Themes\GreenStyle.xaml") круто было бы если бы работало ага да
+                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Themes\GreenStyle.xaml")
+                    }; 
+                    break;
+                case "Синий":
+                    this.Resources = new ResourceDictionary()
+                    {
+                        Source = new Uri(@"C:\4sem\OOP\Labs\MasterLabWPF\Themes\BlueStyle.xaml")
+                    }; 
+                    break;
+            }
+        }
+
+        private void ProductGrid_SourceUpdated(object sender, DataTransferEventArgs e) // умоляю, работай (Не работает)
+        {
+            memento.Push(productList.ToList()); // Костыли к нам приходят
+        }
+
+        private void redoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (mementoRedo.Count>0)
+            {
+                memento.Push(productList.ToList());
+                productList = mementoRedo.Pop();
+
+                ProductGrid.ItemsSource = productList;
+                ProductGrid.Items.Refresh();
+            }
+           
+        }
+
+        private void undoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (memento.Count > 0)
+            {
+                mementoRedo.Push(productList);
+                productList = memento.Pop();
+
+                ProductGrid.ItemsSource = productList;
+                ProductGrid.Items.Refresh();
+            }
+        }
+
+        private void ProductGrid_CollectionUpdated(object sender, RoutedEventArgs e)
+        {
+            memento.Push(productList);
+        }
     }
 }

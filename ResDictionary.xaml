@@ -7,8 +7,7 @@
         <GradientStop Color="#0373C3" Offset="1" />
     </LinearGradientBrush>
 
-    <Style x:Key="multiTriggerStyle" TargetType="Button">
-        <Setter Property="Background" Value="Cyan"/>
+    <Style x:Key="multiTriggerStyle" TargetType="DataGridRow">
         <Style.Triggers>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -61,12 +60,15 @@
         </Style.Triggers>
         
     </Style>
-    <ControlTemplate x:Key="ComboBoxControlTemplate1" TargetType="{x:Type ComboBox}">
-        <ControlTemplate.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="15"/>
-            </Style>
-            </ControlTemplate.Resources>
-        <Grid/>
+    
+    <ControlTemplate x:Key="undoButtonTemplate" TargetType="{x:Type Button}"  >
+        <Button Background="{StaticResource tealBlueGradient}" x:Name="undoButton" FontSize="16"  MaxWidth="140" Content="Назад">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+       
     </ControlTemplate>
 </ResourceDictionary>

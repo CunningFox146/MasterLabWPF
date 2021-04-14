@@ -15,7 +15,7 @@
     </Window.Resources>
     <Grid>
         <TabControl FontSize="16">
-            <TabItem Header="{DynamicResource _Catalogue}" Width="auto">
+            <TabItem Style="{DynamicResource ThemedStyleTabItem}" Header="{DynamicResource _Catalogue}" Width="auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -31,12 +31,14 @@
                         <RowDefinition Height ="8*"/>
                         <RowDefinition Height="10"/>
                         <RowDefinition Height = "30"/>
+                        <RowDefinition Height = "5"/>
+                        <RowDefinition Height = "30"/>
                         <RowDefinition Height="5"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid IsReadOnly="False" FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False" VerticalGridLinesBrush ="White">
+                    <DataGrid IsReadOnly="False" ItemsSource="{Binding Path=productList, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" FontSize="13" x:Name="ProductGrid" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" AutoGenerateColumns="False" VerticalGridLinesBrush ="White" TargetUpdated="ProductGrid_SourceUpdated" SourceUpdated="ProductGrid_SourceUpdated" xctk:CollectionControlButton.CollectionUpdated="ProductGrid_CollectionUpdated">
                         <DataGrid.ItemContainerStyle>
-                            <Style TargetType="DataGridRow">
+                            <Style TargetType="DataGridRow" BasedOn="{StaticResource multiTriggerStyle}">
                                 <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
                             </Style>
                         </DataGrid.ItemContainerStyle>
@@ -99,7 +101,7 @@
 
                     <!--Button Style="{StaticResource blueBg}" x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Click="SaveListButton_Click" Content="{DynamicResource _Save}"></-->
                     <Button Background="{StaticResource tealBlueGradient}" x:Name="SaveListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="1" Command="{Binding saveListCommand, Source={StaticResource viewModel}}" CommandParameter="{Binding ElementName=ProductGrid, Path=ItemsSource}" Content="{DynamicResource _Save}"/>
-                    <ComboBox x:Name="FilterDropDown" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="2" Template="{DynamicResource ComboBoxControlTemplate1}">
+                    <ComboBox x:Name="FilterDropDown" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="2">
                         <ComboBoxItem>Все</ComboBoxItem>
                         <ComboBoxItem>Овощи</ComboBoxItem>
                         <ComboBoxItem>Фрукты</ComboBoxItem>
@@ -108,10 +110,14 @@
 
                     <Button Style="{StaticResource blueBg}" Background="{DynamicResource tealBlueGradient}" x:Name="UpdateListButton" FontSize="16"  MaxWidth="140" Grid.Row="3" Grid.Column="3" Click="UpdateListButton_Click" Content="{DynamicResource _Update}"></Button>
                     <Button Style="{StaticResource dataTriggerStyle}" x:Name="ClearListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="4" Click="ClearListButton_Click" Content="{DynamicResource _Clear}"></Button>
-                    <Button Style="{StaticResource multiTriggerStyle}" x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click" Content="{DynamicResource _Load}"></Button>
+                    <Button  Background="{StaticResource tealBlueGradient}" x:Name="LoadListButton" FontSize="16" MaxWidth="140" Grid.Row="3" Grid.Column="5" Click="LoadListButton_Click" Content="{DynamicResource _Load}"></Button>
+
+                    <Button  Grid.Row="5" Grid.Column="1" Template="{DynamicResource undoButtonTemplate}" Click="undoButton_Click"/>
+                    <Button Background="{StaticResource tealBlueGradient}" x:Name="redoButton" FontSize="16"  MaxWidth="140" Grid.Row="5" Grid.Column="2" Click="redoButton_Click" Content="Вперед"/>
+
                 </Grid>
             </TabItem>
-            <TabItem Header="{DynamicResource _AddItem}" Width="auto">
+            <TabItem Style="{DynamicResource ThemedStyleTabItem}" Header="{DynamicResource _AddItem}" Width="auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -164,7 +170,7 @@
                     <Label Grid.ColumnSpan="2" FontSize="16" Grid.Column="1" Grid.Row="8" Content="{DynamicResource _Image}"></Label>
                     <Button Style="{StaticResource blueBg}"  FontSize="16" x:Name="LoadImageButton" Grid.Column="2" Grid.Row="8" Margin="3" Grid.ColumnSpan="2" MaxWidth="200" Click="LoadImageButton_Click" HorizontalAlignment="Left" Width="328" Content="{DynamicResource _AddImage}"></Button>
                     <TextBlock  x:Name="SelectedImageTextBlock" Grid.ColumnSpan="2" FontSize="16" Grid.Column="4" Grid.Row="8"></TextBlock>
-
+                    <ns:imagePreview x:Name="ImgPreview" Grid.Column="4" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="3"/>
 
 
 
@@ -172,10 +178,11 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="{DynamicResource _Settings}" Width="auto">
+            <TabItem Style="{DynamicResource ThemedStyleTabItem}" Header="{DynamicResource _Settings}" Width="auto">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="10"/>
+                        <RowDefinition Height="20*" MaxHeight="40"/>
                         <RowDefinition Height="20*" MaxHeight="40"/>
                         <RowDefinition Height="80*"/>
                         <RowDefinition Height="10"/>
@@ -195,6 +202,14 @@
                         <ComboBoxItem>English</ComboBoxItem>
                     </ComboBox>
                     <Button Style="{StaticResource eventTriggerStyle}" Margin ="3" x:Name="ChangeLang" FontSize="16" MaxWidth="140" Grid.Row="1" Grid.Column="3" Click="ChangeLang_Click"
+                     Content="{DynamicResource _Load}"></Button>
+
+                    <Label Grid.ColumnSpan="1" FontSize="16" Grid.Column="1" Grid.Row="2" Content="{DynamicResource _Style}"></Label>
+                    <ComboBox x:Name = "styleLB" FontSize="16" Grid.Column="2" Grid.Row="2" MaxHeight="30" SelectedIndex="0">
+                        <ComboBoxItem>Синий</ComboBoxItem>
+                        <ComboBoxItem>Зелёный</ComboBoxItem>
+                    </ComboBox>
+                    <Button Style="{StaticResource eventTriggerStyle}" Margin ="3" x:Name="ChangeStyle" FontSize="16" MaxWidth="140" Grid.Row="2" Grid.Column="3" Click="ChangeStyle_Click"
                      Content="{DynamicResource _Load}"></Button>
 
 

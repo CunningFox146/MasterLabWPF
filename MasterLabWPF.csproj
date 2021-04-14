@@ -70,7 +70,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="imageFull.xaml.cs">
+      <DependentUpon>imageFull.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="imagePreview.xaml.cs">
+      <DependentUpon>imagePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="imageFull.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="imagePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Localization\EnglishLang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +111,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BlueStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\GreenStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

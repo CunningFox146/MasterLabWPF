@@ -24,5 +24,6 @@
     <v:String x:Key="_Change">Изменить</v:String>
     <v:String x:Key="_Shop">Магазин</v:String>
     <v:String x:Key="_Edit_product">Редактирование товара</v:String>
+    <v:String x:Key="_Style">Стиль</v:String>
 
 </ResourceDictionary>
