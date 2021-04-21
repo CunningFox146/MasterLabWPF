@@ -280,5 +280,11 @@ namespace MasterLabWPF
         {
             memento.Push(productList);
         }
+
+        private void TabItem_Click(object sender, RoutedEventArgs e)
+        {
+            additemTab.Background = Brushes.BlueViolet;
+              
+        }
     }
 }

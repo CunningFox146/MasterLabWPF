@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:MasterLabWPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <Grid DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:imagePreview}}}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <Button Click="Button_Click" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="White"> 
+    <Grid DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:imagePreview}}}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+        <Button Click="Button_Click" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Background="White" BorderThickness="0"> 
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

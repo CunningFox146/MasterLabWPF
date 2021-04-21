@@ -54,13 +54,13 @@
                                     <TextBlock  Text="{DynamicResource _FullName}" ></TextBlock>
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
-                            <DataGridTemplateColumn Width="2*">
+                            <DataGridTemplateColumn Width="2.5*">
                                 <DataGridTemplateColumn.Header>
                                     <TextBlock  Text="{DynamicResource _Image}"></TextBlock>
                                 </DataGridTemplateColumn.Header>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Imagesrc}" Width="100" Height="100"/>
+                                        <ns:imagePreview Source="{Binding Imagesrc}" Width="100" Height="100"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -117,7 +117,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Style="{DynamicResource ThemedStyleTabItem}" Header="{DynamicResource _AddItem}" Width="auto">
+            <TabItem x:Name="additemTab" Style="{DynamicResource ThemedStyleTabItem}" Header="{DynamicResource _AddItem}" Width="auto" ns:imagePreview.PreviewClick="TabItem_Click" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -171,7 +171,7 @@
                     <Button Style="{StaticResource blueBg}"  FontSize="16" x:Name="LoadImageButton" Grid.Column="2" Grid.Row="8" Margin="3" Grid.ColumnSpan="2" MaxWidth="200" Click="LoadImageButton_Click" HorizontalAlignment="Left" Width="328" Content="{DynamicResource _AddImage}"></Button>
                     <TextBlock  x:Name="SelectedImageTextBlock" Grid.ColumnSpan="2" FontSize="16" Grid.Column="4" Grid.Row="8"></TextBlock>
                     <ns:imagePreview x:Name="ImgPreview" Grid.Column="4" Grid.ColumnSpan="1" Grid.Row="5" Grid.RowSpan="3"/>
-
+                    
 
 
                     <Button Style="{StaticResource blueBg}"  FontSize="16" x:Name="AddButton" Grid.Column="1" Grid.Row="10" MaxWidth="100" Click="AddButton_Click" Content="{DynamicResource _Add}"></Button>
